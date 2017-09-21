@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import {ListGroup, Container, Row, Col, Button} from 'reactstrap';
 
 import Form from './Form'
+import NoteSidebar from "./NoteSidebar";
 
 const actions = {
     ADD_NOTE: "ADD_NOTE",
@@ -14,12 +15,13 @@ const actions = {
 
 }
 
-const TodoList = class TodoList extends React.Component {
+const App = class TodoList extends React.Component {
     handleCreate = (data) => {
-        this.props.dispatch({type: actions.ADD_NOTE, value: data})
+        this.props.dispatch({type: actions.ADD_NOTE, payload: data})
     };
+
     render() {
-        const {list} = this.props;
+        const {notes} = this.props;
         return <div>
             <Container fluid={true}>
                 <Row>
@@ -28,8 +30,19 @@ const TodoList = class TodoList extends React.Component {
                     </Col>
                 </Row>
             </Container>
+            <Container>
+                <Row>
+                    <Col>
+                        {notes.map((item, index) =>
+                            <NoteSidebar
+                                key={`note-${index}`}
+                                {...item}
+                            />)}
+                    </Col>
+                </Row>
+            </Container>
         </div>
     };
 };
 
-export default connect((state) => ({list: state.todo.notes}))(TodoList);
+export default connect((state) => ({notes: state.todo.notes}))(App);

@@ -12,9 +12,10 @@ const initStore = {
 };
 
 export default function todo(state = initStore, action = {}) {
-    const {notes} = initStore;
+
     switch (action.type) {
         case actions.ADD_NOTE: {
+            const {notes} = initStore;
             return {
                 notes: [
                     ...notes,

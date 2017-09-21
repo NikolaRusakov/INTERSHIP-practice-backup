@@ -11,18 +11,6 @@ class Form extends React.Component {
     static propTypes = {
         onSubmit: React.PropTypes.func.isRequired
     };
-    /*state={
-        displayColorPicker: false,
-        color:{
-            r:'0',
-            g:'0',
-            b:'0',
-            a:1
-        }
-    }*/
-
-
-
     handleSubmit = (data) => {
         this.props.onSubmit(data);
         this.props.reset();
@@ -30,7 +18,7 @@ class Form extends React.Component {
     };
 
     render() {
-        const {handleSubmit, submitting,form} = this.props;
+        const {handleSubmit, submitting} = this.props;
         return <form onSubmit={handleSubmit(this.handleSubmit)}>
             <Field component={ColorPicker} name="color"  label="Color"/>
             <Field component={FormField} name="title" label="title" type="title" placeholder="Title of a memo"/>
@@ -51,15 +39,14 @@ class Form extends React.Component {
 Form = reduxForm({
     initialValues: {
         title: "Chleba",
-        notes: "Přidal bych další část 2.",
+        content: "Přidal bych další část 2.",
         created:new Date().toDateString(),
             color: {
-                r: 0,
-                g: 0,
-                b: 0,
-                a: 1,
-            },
-        displayColorPicker:false
+                r: 255,
+                g: 100,
+                b: 255,
+                a: 0.6,
+            }
     },
     form: Form.formName,
     validation: Form.validation,

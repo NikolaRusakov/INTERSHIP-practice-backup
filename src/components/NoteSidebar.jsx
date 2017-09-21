@@ -1,17 +1,19 @@
 import React from 'react';
 import {
     Card, CardImg, CardText, CardBlock,
-    CardTitle, CardHeader, CardSubtitle, Button, Row, Col, Container
+    CardTitle, CardHeader, CardSubtitle, Button, Row, Col, Container, CardFooter
 } from 'reactstrap';
 
 
 export default class NoteSidebar extends React.Component {
 
     render() {
-        const {title, content, created, lastModification} = this.props;
+        console.log(this.props);
+        const {title, content, created} = this.props;
+        const{r,g,b,a}=this.props.color;
         return (
             <div>
-                <Card>
+                <Card inverse style={{ backgroundColor: `rgba(${r},${g},${b},${a})`, borderColor: '#333' }}>
                     <CardHeader>
                         <Row>
                             <Col md={{size: 1, push: 4, offset: 4}}>
@@ -28,7 +30,7 @@ export default class NoteSidebar extends React.Component {
                         <CardText>{content}</CardText>
 
                     </CardBlock>
-                    <CardFooter>{created}{lastModification}</CardFooter>
+                    <CardFooter>{created}</CardFooter>
                 </Card>
             </div>)
     }

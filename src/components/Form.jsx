@@ -26,9 +26,11 @@ class Form extends React.Component {
     handleSubmit = (data) => {
         this.props.onSubmit(data);
         this.props.reset();
+
     };
 
     render() {
+        const {handleSubmit, submitting,form} = this.props;
         return <form onSubmit={handleSubmit(this.handleSubmit)}>
             <Field component={ColorPicker} name="color"  label="Color"/>
             <Field component={FormField} name="title" label="title" type="title" placeholder="Title of a memo"/>
@@ -42,7 +44,7 @@ class Form extends React.Component {
             </Container>
         </form>
 
-        const {handleSubmit, submitting} = this.props;
+
     }
 }
 
@@ -51,12 +53,12 @@ Form = reduxForm({
         title: "Chleba",
         notes: "Přidal bych další část 2.",
         created:new Date().toDateString(),
-        color: {
-            r: '0',
-            g: '0',
-            b: '0',
-            a: '1',
-        },
+            color: {
+                r: 0,
+                g: 0,
+                b: 0,
+                a: 1,
+            },
         displayColorPicker:false
     },
     form: Form.formName,

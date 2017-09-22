@@ -6,12 +6,9 @@ import {
 
 
 export default class NoteSidebar extends React.Component {
-    handleDelete = (e) => {
-        this.props.onClick(this.props);
-    }
 
     render() {
-        const {title, content, created} = this.props;
+        const {title, content, created,onDelete,onEdit} = this.props;
         const {r, g, b, a} = this.props.color;
         return (
             <div>
@@ -23,9 +20,8 @@ export default class NoteSidebar extends React.Component {
                 }}>
                     <CardHeader>
                         <Col className="text-right">
-                            <Button color="warning" size="sm"
-                                    name="delete" /*onClick={this.handleDelete}*/>deletion</Button>
-                            <Button color="warning" size="sm" name="edit">edit</Button>
+                            <Button color="warning" size="sm" name="delete" onClick={onDelete}>deletion</Button>
+                            <Button color="warning" size="sm" name="edit" onClick={onEdit}>edit</Button>
                         </Col>
                     </CardHeader>
 

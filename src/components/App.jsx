@@ -9,17 +9,20 @@ const actions = {
     ADD_NOTE: "ADD_NOTE",
     EDIT_NOTE: "EDIT_NOTE",
     DELETE_NOTE: "DELETE_NOTE",
-    COLOR_CHANGE: "COLOR_CHANGE",
-    COLORPICKER_CLOSE: "COLORPICKER_CLOSE",
-    COLORPICKER_CLICK: "COLORPICKER_CLICK"
-
+    COLOR_CHANGE: "COLOR_CHANGE"
 }
 
-const App = class TodoList extends React.Component {
+const App = class App extends React.Component {
     handleCreate = (data) => {
         this.props.dispatch({type: actions.ADD_NOTE, payload: data})
     };
-
+    handleDelete = (index) => {
+        console.log(index);
+        this.props.dispatch({type: actions.DELETE_NOTE, index})
+    };
+    handleEdit = (index) => {
+        this.props.dispatch({type: actions.EDIT_NOTE, index})
+    };
     render() {
         const {notes} = this.props;
         return <div>
@@ -40,8 +43,10 @@ const App = class TodoList extends React.Component {
                                     <Row>
                                         <Col md={{size: 6}}>
                                             <NoteSidebar
-                                                key={`note-${index}`}
+                                                key={index}
                                                 {...item}
+                                                onDelete={this.handleDelete.bind(this,index)}
+                                                onEdit={this.handleEdit.bind(this,index)}
                                             />
                                         </Col>
                                     </Row>

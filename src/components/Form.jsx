@@ -19,19 +19,22 @@ class Form extends React.Component {
 
     render() {
         const {handleSubmit, submitting} = this.props;
-        return <form onSubmit={handleSubmit(this.handleSubmit)}>
-            <Field component={ColorPicker} name="color"  label="Color"/>
-            <Field component={FormField} name="title" label="title" type="title" placeholder="Title of a memo"/>
-            <Field component={FormField} name="content" label="content" type="textarea" placeholder="Actual notes..."/>
-            <Container>
-                <Row>
-                    <Col xs={{offset: 5}}>
-                        <Button color="primary" type="submit" size="sm" disabled={submitting}>Proveď</Button>
-                    </Col>
-                </Row>
-            </Container>
-        </form>
-
+        return <div>
+            <form onSubmit={handleSubmit(this.handleSubmit)} inverse
+                  style={{borderColor: '#FFF111', flex: 1, margin: 10}}>
+                <Field component={ColorPicker} name="color" label="Color"/>
+                <Field component={FormField} name="title" label="title" type="title" placeholder="Title of a memo"/>
+                <Field component={FormField} name="content" label="content" type="textarea"
+                       placeholder="Actual notes..."/>
+                <Container>
+                    <Row>
+                        <Col md={{offset: 5}}>
+                            <Button color="primary" type="submit" size="sm" disabled={submitting}>Proveď</Button>
+                        </Col>
+                    </Row>
+                </Container>
+            </form>
+        </div>
 
     }
 }
@@ -40,13 +43,13 @@ Form = reduxForm({
     initialValues: {
         title: "Chleba",
         content: "Přidal bych další část 2.",
-        created:new Date().toDateString(),
-            color: {
-                r: 255,
-                g: 100,
-                b: 255,
-                a: 0.6,
-            }
+        created: new Date().toDateString(),
+        color: {
+            r: 255,
+            g: 100,
+            b: 255,
+            a: 0.6,
+        }
     },
     form: Form.formName,
     validation: Form.validation,

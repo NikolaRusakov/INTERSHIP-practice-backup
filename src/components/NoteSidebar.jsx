@@ -6,31 +6,43 @@ import {
 
 
 export default class NoteSidebar extends React.Component {
+    handleDelete = (e) => {
+        this.props.onClick(this.props);
+    }
 
     render() {
-        console.log(this.props);
         const {title, content, created} = this.props;
-        const{r,g,b,a}=this.props.color;
+        const {r, g, b, a} = this.props.color;
         return (
             <div>
-                <Card inverse style={{ backgroundColor: `rgba(${r},${g},${b},${a})`, borderColor: '#333' }}>
+                <Card inverse style={{
+                    backgroundColor: `rgba(${r},${g},${b},${a})`,
+                    borderColor: '#FFF111',
+                    flex: 1,
+                    margin: 10
+                }}>
                     <CardHeader>
-                        <Row>
-                            <Col md={{size: 1, push: 4, offset: 4}}>
-                                <Button color="warning" size="sm" name="delete">deletion</Button>
-                            </Col>
-                            <Col md={{size: 1, push: 1}}>
-                                <Button color="warning" size="sm" name="delete">editation</Button>
-                            </Col>
-                        </Row>
+                        <Col className="text-right">
+                            <Button color="warning" size="sm"
+                                    name="delete" /*onClick={this.handleDelete}*/>deletion</Button>
+                            <Button color="warning" size="sm" name="edit">edit</Button>
+                        </Col>
                     </CardHeader>
 
                     <CardBlock>
-                        <CardTitle>{title}</CardTitle>
-                        <CardText>{content}</CardText>
+                        <CardTitle tag="h3" className="text-center">
+                            {title}
+                        </CardTitle>
+
+                        <CardText className="text-center">
+                            {content}
+                        </CardText>
 
                     </CardBlock>
-                    <CardFooter>{created}</CardFooter>
+
+                    <CardFooter>
+                        {created}
+                    </CardFooter>
                 </Card>
             </div>)
     }

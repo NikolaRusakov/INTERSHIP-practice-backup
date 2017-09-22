@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux'
-import {ListGroup, Container, Row, Col, Button} from 'reactstrap';
+import {Container, Row, Col, CardColumns, CardGroup, CardDeck} from 'reactstrap';
 
 import Form from './Form'
 import NoteSidebar from "./NoteSidebar";
@@ -25,19 +25,30 @@ const App = class TodoList extends React.Component {
         return <div>
             <Container fluid={true}>
                 <Row>
-                    <Col xs={{size: 6, offset: 3}}>
+                    <Col md={{size: 6, offset: 3}}>
                         <Form onSubmit={this.handleCreate}/>
                     </Col>
                 </Row>
             </Container>
-            <Container>
+
+            <Container fluid={true}>
                 <Row>
-                    <Col>
-                        {notes.map((item, index) =>
-                            <NoteSidebar
-                                key={`note-${index}`}
-                                {...item}
-                            />)}
+                    <Col md={{size: 6, offset: 3}}>
+                        <CardDeck>
+                            {notes.map((item, index) =>
+                                <Container>
+                                    <Row>
+                                        <Col md={{size: 6}}>
+                                            <NoteSidebar
+                                                key={`note-${index}`}
+                                                {...item}
+                                            />
+                                        </Col>
+                                    </Row>
+                                </Container>
+                            )}
+
+                        </CardDeck>
                     </Col>
                 </Row>
             </Container>

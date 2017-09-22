@@ -15,7 +15,7 @@ export default function todo(state = initStore, action = {}) {
 
     switch (action.type) {
         case actions.ADD_NOTE: {
-            const {notes} = initStore;
+            const {notes} = state;
             return {
                 notes: [
                     ...notes,

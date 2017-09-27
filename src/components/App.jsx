@@ -20,9 +20,8 @@ const App = class App extends React.Component {
         console.log(index);
         this.props.dispatch({type: actions.DELETE_NOTE, index})
     };
-    handleEdit = (index) => {
-        this.props.dispatch({type: actions.EDIT_NOTE, index})
-    };
+
+
     render() {
         const {notes} = this.props;
         return <div>
@@ -45,14 +44,13 @@ const App = class App extends React.Component {
                                             <NoteSidebar
                                                 key={index}
                                                 {...item}
-                                                onDelete={this.handleDelete.bind(this,index)}
-                                                onEdit={this.handleEdit.bind(this,index)}
+                                                onDelete={this.handleDelete.bind(this, index)}
                                             />
+
                                         </Col>
                                     </Row>
                                 </Container>
                             )}
-
                         </CardDeck>
                     </Col>
                 </Row>

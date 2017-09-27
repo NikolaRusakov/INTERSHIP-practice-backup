@@ -26,17 +26,22 @@ export default function todo(state = initStore, action = {}) {
             return {
                 notes: [
                     ...notes.slice(0, action.index),
-                    ...notes.slice(action.index+1)
+                    ...notes.slice(action.index + 1)
                 ]
             }
         }
         case actions.EDIT_NOTE: {
-            const {notes} = state;
+            const {notes, modal} = state;
             return {
                 notes: [
                     ...notes.slice(0, action.index),
                     ...notes[action.index],
-                    ...notes.slice(action.index+1)
+                    ...notes.slice(action.index + 1)
+                ],
+                modal: [...modal.slice(0, modal.index),
+                    {
+                        opened: !modal[action.index].opened
+                    }
                 ]
             }
         }

@@ -3,12 +3,20 @@ import {
     Card, CardImg, CardText, CardBlock,
     CardTitle, CardHeader, CardSubtitle, Button, Row, Col, Container, CardFooter
 } from 'reactstrap';
+import {bindActionCreators} from "redux";
+import {show} from "redux-modal";
+import {connect} from "react-redux";
 
 
-export default class NoteSidebar extends React.Component {
+class NoteSidebar extends React.Component {
+    handleOpen = (name) => {
+        this.props.show(name, {message: `This is a modal`})
+    };
+    componentWillMount(){
 
+    }
     render() {
-        const {title, content, created,onDelete,onEdit} = this.props;
+        const {title, content, created,onDelete} = this.props;
         const {r, g, b, a} = this.props.color;
         return (
             <div>
@@ -21,7 +29,7 @@ export default class NoteSidebar extends React.Component {
                     <CardHeader>
                         <Col className="text-right">
                             <Button color="warning" size="sm" name="delete" onClick={onDelete}>deletion</Button>
-                            <Button color="warning" size="sm" name="edit" onClick={onEdit}>edit</Button>
+                            <Button color="warning" size="sm" name="edit" onClick={()=>this.handleOpen("modal")}>edit</Button>
                         </Col>
                     </CardHeader>
 
@@ -43,3 +51,7 @@ export default class NoteSidebar extends React.Component {
             </div>)
     }
 }
+export default connect(
+    null,
+    dispatch => bindActionCreators({ show }, dispatch)
+)(NoteSidebar)

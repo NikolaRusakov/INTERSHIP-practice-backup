@@ -1,9 +1,8 @@
-/**
- * Opět různé konfigurace - root komponenta a devtools atd...
- */
+
 import React from 'react';
 import {render} from 'react-dom';
 import App from './components/App'
+import ModalForm from './components/ModalForm'
 
 import {createDevTools} from 'redux-devtools';
 import DockMonitor from 'redux-devtools-dock-monitor';
@@ -34,6 +33,7 @@ class Wrapper extends React.Component {
             <Provider store={store} key="provider">
                 <div>
                     <App/>
+                    <ModalForm name="modal"/>
                     <DevTools key="devtools"/>
                 </div>
             </Provider>

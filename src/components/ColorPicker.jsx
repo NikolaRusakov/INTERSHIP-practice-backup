@@ -72,7 +72,6 @@ const ColorPicker = class ColorPicker extends React.Component {
                 },
             },
         });
-        console.log(this.props);
         return (
 
             <div>
